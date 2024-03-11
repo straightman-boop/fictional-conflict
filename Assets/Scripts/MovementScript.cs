@@ -6,7 +6,11 @@ public class MovementScript : MonoBehaviour
 {
     Rigidbody2D player_rigidbody2D;
     float walk_speed = 3;
-    float jump_force = 4;
+    float jump_force = 8;
+
+    float jump_TimeCounter;
+    float jump_Time = 0.3f;
+    bool isJumping;
 
     float move_horizontal;
     float move_vertical;
@@ -24,7 +28,34 @@ public class MovementScript : MonoBehaviour
     void Update()
     {
         move_horizontal = Input.GetAxisRaw("Horizontal");
-        move_vertical = Input.GetAxisRaw("Vertical");
+        //move_vertical = Input.GetAxisRaw("Vertical");
+
+        if (Input.GetKeyDown(KeyCode.W) && grounded_Script.isGrounded == true)
+        {
+            isJumping = true;
+            jump_TimeCounter = jump_Time;
+            player_rigidbody2D.velocity = Vector2.up * jump_force;
+        }
+
+        if (Input.GetKey(KeyCode.W) && isJumping == true)
+        {
+            if (jump_TimeCounter > 0)
+            {
+                player_rigidbody2D.velocity = Vector2.up * jump_force;
+                jump_TimeCounter -= Time.deltaTime;
+            }
+
+            else
+            {
+                isJumping = false;
+            }
+
+        }
+
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            isJumping = false;
+        }
 
     }
 
@@ -42,13 +73,13 @@ public class MovementScript : MonoBehaviour
             //Debug.Log("Walking Left");
         }
 
-        if (move_vertical > 0.1f && grounded_Script.isGrounded == true)
-        {
-            player_rigidbody2D.velocity = Vector2.up * jump_force;
+        //if (move_vertical > 0.1f && grounded_Script.isGrounded == true)
+        //{
+        //    player_rigidbody2D.velocity = Vector2.up * jump_force;
 
-            //player_rigidbody2D.AddForce(new Vector2(0f, move_vertical * jump_force), ForceMode2D.Impulse);
-            //using addforce created bugs where the jump is inconsistent. the height grew after each bounce.
-        }
+        //    //player_rigidbody2D.AddForce(new Vector2(0f, move_vertical * jump_force), ForceMode2D.Impulse);
+        //    //using addforce created bugs where the jump is inconsistent. the height grew after each bounce.
+        //}
 
         Debug.Log(move_vertical);
     }
