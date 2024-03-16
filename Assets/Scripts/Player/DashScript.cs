@@ -32,11 +32,12 @@ public class DashScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(player_rigidbody2D.drag);
+        //Debug.Log();
 
         if (doublePress_Script.doubePress_Right_aerial == true && dash_State == false && grounded_Script.isGrounded == false) //Aerial Dash RIGHT
         {
             movement_Script.enabled = false;
+            doublePress_Script.enabled = false;
             dash_State = true;
             dash_Counter = dash_Dur;
 
@@ -51,6 +52,7 @@ public class DashScript : MonoBehaviour
         if (doublePress_Script.doubePress_Left_aerial == true && dash_State == false && grounded_Script.isGrounded == false) //Aerial Dash RIGHT
         {
             movement_Script.enabled = false;
+            doublePress_Script.enabled = false;
             dash_State = true;
             dash_Counter = dash_Dur;
 
@@ -76,6 +78,7 @@ public class DashScript : MonoBehaviour
             {
                 dash_State = false;
                 movement_Script.enabled = true;
+                doublePress_Script.enabled = true;
             }
         }
 
