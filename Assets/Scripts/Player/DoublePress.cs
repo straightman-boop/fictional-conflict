@@ -13,13 +13,21 @@ public class DoublePress : MonoBehaviour
     [HideInInspector]
     public bool doubePress_Left;
     [HideInInspector]
+    public bool doubePress_Right_aerial;
+    [HideInInspector]
+    public bool doubePress_Left_aerial;
+    [HideInInspector]
     public bool doubePress_Down;
+
+    GroundedScript grounded_Script;
 
     private void Start()
     {
         doubePress_Right = false;
         doubePress_Left = false;
         doubePress_Down = false;
+
+        grounded_Script = GetComponentInChildren<GroundedScript>();
     }
 
     public void Update()
@@ -28,18 +36,16 @@ public class DoublePress : MonoBehaviour
         {
             float timeSinceLastPress = Time.time - lastPressedTimeL;
 
-            if (timeSinceLastPress <= DOUBLE_PRESS_TIME)
+            if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press DOWN!");
             {
-                Debug.Log("Double Press DOWN!");
-                //return true;
+
             }
-            else
+            else //Debug.Log("Single Press DOWN!");
             {
-                Debug.Log("DOWN!");
+                
             }
 
             lastPressedTimeL = Time.time;
-            //return false;
 
         }
 
@@ -49,40 +55,50 @@ public class DoublePress : MonoBehaviour
 
             if (timeSinceLastPress <= DOUBLE_PRESS_TIME)
             {
-                Debug.Log("Double Press LEFT!");
-                doubePress_Left = true;
-                //return true;
+                if (grounded_Script.isGrounded == false)
+                {
+                    doubePress_Left_aerial = true;
+                }
+
+
+                else
+                {
+                    //doubePress_Left = true;
+                }
             }
-            else
+            else //Debug.Log("Single Press LEFT!");
             {
-                Debug.Log("LEFT!");
+                
             }
 
             lastPressedTimeL = Time.time;
-            //return false;
-
         }
 
         else if (Input.GetKeyDown(KeyCode.D))
         {
             float timeSinceLastPress = Time.time - lastPressedTimeR;
 
-            if (timeSinceLastPress <= DOUBLE_PRESS_TIME)
+            if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press RIGHT!");  
             {
-                Debug.Log("Double Press RIGHT!");
-                doubePress_Right = true;
-                //return true;
+                if (grounded_Script.isGrounded == false)
+                {
+                    doubePress_Right_aerial = true;
+                }
+
+
+                else
+                {
+                    //doubePress_Right = true;
+                }
+
+
             }
-            else
+            else //Debug.Log("Single Press RIGHT!");
             {
-                Debug.Log("RIGHT!");
+                
             }
 
-            lastPressedTimeR = Time.time;
-            //return false;
+            lastPressedTimeR = Time.time;         
         }
-
-        //else
-        //    return false;
     }
 }
