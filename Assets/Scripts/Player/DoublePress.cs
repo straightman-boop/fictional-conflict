@@ -42,14 +42,14 @@ public class DoublePress : MonoBehaviour
             }
             else //Debug.Log("Single Press DOWN!");
             {
-                
+
             }
 
             lastPressedTimeL = Time.time;
 
         }
 
-        else if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.A))
         {
             float timeSinceLastPress = Time.time - lastPressedTimeL;
 
@@ -63,18 +63,18 @@ public class DoublePress : MonoBehaviour
 
                 else
                 {
-                    //doubePress_Left = true;
+                    doubePress_Left = true;
                 }
             }
             else //Debug.Log("Single Press LEFT!");
             {
-                
+
             }
 
             lastPressedTimeL = Time.time;
         }
 
-        else if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             float timeSinceLastPress = Time.time - lastPressedTimeR;
 
@@ -88,17 +88,28 @@ public class DoublePress : MonoBehaviour
 
                 else
                 {
-                    //doubePress_Right = true;
+                    doubePress_Right = true;
                 }
 
 
             }
             else //Debug.Log("Single Press RIGHT!");
             {
-                
+
             }
 
-            lastPressedTimeR = Time.time;         
+            lastPressedTimeR = Time.time;
         }
+
+        if (Input.GetKeyUp(KeyCode.D))
+        {
+            doubePress_Right = false;
+        }
+
+        if (Input.GetKeyUp(KeyCode.A))
+        {
+            doubePress_Left = false;
+        }
+
     }
 }

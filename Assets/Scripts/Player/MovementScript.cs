@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovementScript : MonoBehaviour
 {
     Rigidbody2D player_rigidbody2D;
-    float walk_speed = 3;
+    [HideInInspector] public float walk_speed = 4.5f;
     float jump_force = 12;
     float jump_force_horizontal = 8;
 
