@@ -352,7 +352,9 @@ GameObject:
   - component: {fileID: 1444946050}
   - component: {fileID: 1444946049}
   - component: {fileID: 1444946048}
+  - component: {fileID: 1444946054}
   - component: {fileID: 1444946052}
+  - component: {fileID: 1444946053}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -467,8 +469,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444946047}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.38, y: -2.39, z: 0}
-  m_LocalScale: {x: 0.94739676, y: 2.0121033, z: 1.7833351}
+  m_LocalPosition: {x: -5.1, y: -0.99, z: 0}
+  m_LocalScale: {x: 2.5197911, y: 5.351591, z: 4.7431364}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2071541147}
@@ -487,6 +489,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd9ffdd5448ed34380f8b487aaf3f8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1444946053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444946047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4441fde327543142a3fa0d34773d96c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1444946054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1444946047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d180b66127cd55e4b93ee878a16b5a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doubePress_Right: 0
+  doubePress_Left: 0
+  doubePress_Down: 0
 --- !u!1 &2071541146
 GameObject:
   m_ObjectHideFlags: 0
@@ -500,6 +529,7 @@ GameObject:
   - component: {fileID: 2071541149}
   - component: {fileID: 2071541148}
   - component: {fileID: 2071541151}
+  - component: {fileID: 2071541152}
   m_Layer: 6
   m_Name: Grounded_Check
   m_TagString: Untagged
@@ -600,3 +630,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isGrounded: 0
+--- !u!114 &2071541152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071541146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d180b66127cd55e4b93ee878a16b5a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doubePress_Right: 0
+  doubePress_Left: 0
+  doubePress_Down: 0

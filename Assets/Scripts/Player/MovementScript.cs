@@ -16,17 +16,21 @@ public class MovementScript : MonoBehaviour
     float move_vertical;
 
     GroundedScript grounded_Script;
+    DoublePress double_press_Script;
 
     // Start is called before the first frame update
     void Start()
     {
         player_rigidbody2D = GetComponent<Rigidbody2D>();
         grounded_Script = GetComponentInChildren<GroundedScript>();
+        double_press_Script = GetComponent<DoublePress>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //Debug.Log(player_rigidbody2D.gravityScale);
+
         move_horizontal = Input.GetAxisRaw("Horizontal");
         //move_vertical = Input.GetAxisRaw("Vertical");
 
@@ -81,6 +85,6 @@ public class MovementScript : MonoBehaviour
         //    //using addforce created bugs where the jump is inconsistent. the height grew after each bounce.
         //}
 
-        Debug.Log(move_vertical);
+        //Debug.Log(move_vertical);
     }
 }
