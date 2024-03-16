@@ -112,4 +112,9 @@ public class DoublePress : MonoBehaviour
         }
 
     }
+
+    /*Acts as a script designed to catch double presses for each direction button. It is connected to multiple scripts that may need its variables.
+    Simple time counter algorithm to check the elapsed time between presses to count it as a valid "double press input". There are conditionals
+    that determine whether a press is a single or double button press for flexibility.*/
+
 }

@@ -32,7 +32,7 @@ public class MovementScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(player_rigidbody2D.gravityScale);
+        //Debug.Log(walk_speed);
 
         move_horizontal = Input.GetAxisRaw("Horizontal");
 
