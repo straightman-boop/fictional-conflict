@@ -12,11 +12,11 @@ TagManager:
   - Background
   - Water
   - UI
-  - Player
-  - 
-  - 
-  - 
-  - 
+  - Players_Movement
+  - Player1_HurtBox
+  - Player1_HitBox
+  - Player2_HurtBox
+  - Player2_HitBox
   - 
   - 
   - 

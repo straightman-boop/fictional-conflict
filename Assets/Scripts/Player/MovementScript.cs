@@ -19,14 +19,12 @@ public class MovementScript : MonoBehaviour
     float def_y = 1.5f;
 
     GroundedScript grounded_Script;
-    DoublePress double_press_Script;
 
     // Start is called before the first frame update
     void Start()
     {
         player_rigidbody2D = GetComponent<Rigidbody2D>();
         grounded_Script = GetComponentInChildren<GroundedScript>();
-        double_press_Script = GetComponent<DoublePress>();
     }
 
     // Update is called once per frame
@@ -34,60 +32,142 @@ public class MovementScript : MonoBehaviour
     {
         //Debug.Log(walk_speed);
 
-        move_horizontal = Input.GetAxisRaw("Horizontal");
-
-        if (Input.GetKey(KeyCode.W) && grounded_Script.isGrounded == true) //Checks input for Jump & if grounded.
+        if (gameObject.name == "Player_1")
         {
-            if (Input.GetKey(KeyCode.D)) //Checks input if left. Automatic curved jump.
+            if (Input.GetKey(KeyCode.A)) //Manual Version of GetAxisRaw. 
             {
-                isJumping = true;
-                jump_TimeCounter = jump_Time;
-                player_rigidbody2D.velocity = new Vector2(def_x, def_y) * jump_force_horizontal;
-
-
+                move_horizontal = -1;
             }
-            
-            else if (Input.GetKey(KeyCode.A)) //Checks input if right. Automatic curved jump.
+            else if (Input.GetKey(KeyCode.D))
             {
-                isJumping = true;
-                jump_TimeCounter = jump_Time;
-                player_rigidbody2D.velocity = new Vector2(-def_x, def_y) * jump_force_horizontal;
-
+                move_horizontal = 1;
+            }
+            else
+            {
+                move_horizontal = 0;
             }
 
-            else //Checks input if stationary. Automatic vertical jump.
+            if (Input.GetKey(KeyCode.W) && grounded_Script.isGrounded == true) //Checks input for Jump & if grounded.
             {
-                isJumping = true;
-                jump_TimeCounter = jump_Time;
-                player_rigidbody2D.velocity = Vector2.up * jump_force;
+                if (Input.GetKey(KeyCode.D)) //Checks input if left. Automatic curved jump.
+                {
+                    isJumping = true;
+                    jump_TimeCounter = jump_Time;
+                    player_rigidbody2D.velocity = new Vector2(def_x, def_y) * jump_force_horizontal;
+
+                }
+
+                else if (Input.GetKey(KeyCode.A)) //Checks input if right. Automatic curved jump.
+                {
+                    isJumping = true;
+                    jump_TimeCounter = jump_Time;
+                    player_rigidbody2D.velocity = new Vector2(-def_x, def_y) * jump_force_horizontal;
+
+                }
+
+                else //Checks input if stationary. Automatic vertical jump.
+                {
+                    isJumping = true;
+                    jump_TimeCounter = jump_Time;
+                    player_rigidbody2D.velocity = Vector2.up * jump_force;
+                }
+
             }
 
+            if (Input.GetKey(KeyCode.W) && isJumping == true)
+            {
+                if (jump_TimeCounter > 0)
+                {
+                    //player_rigidbody2D.velocity = Vector2.up * jump_force;
+                    jump_TimeCounter -= Time.deltaTime;
+                }
+
+                else
+                {
+                    isJumping = false;
+                }
+
+            }
+
+            if (Input.GetKeyUp(KeyCode.W))
+            {
+                isJumping = false;
+            }
         }
 
-        if (Input.GetKey(KeyCode.W) && isJumping == true)
+        else if(gameObject.name == "Player_2")
         {
-            if (jump_TimeCounter > 0)
+
+            if (Input.GetKey(KeyCode.LeftArrow)) //Manual Version of GetAxisRaw. Tweaked for ArrowKeys instead.
             {
-                //player_rigidbody2D.velocity = Vector2.up * jump_force;
-                jump_TimeCounter -= Time.deltaTime;
+                move_horizontal = -1;
+            }
+            else if (Input.GetKey(KeyCode.RightArrow))
+            {
+                move_horizontal = 1;
+            }
+            else
+            {
+                move_horizontal = 0;
             }
 
-            else
+
+            if (Input.GetKey(KeyCode.UpArrow) && grounded_Script.isGrounded == true) //Checks input for Jump & if grounded.
+            {
+                if (Input.GetKey(KeyCode.RightArrow)) //Checks input if left. Automatic curved jump.
+                {
+                    isJumping = true;
+                    jump_TimeCounter = jump_Time;
+                    player_rigidbody2D.velocity = new Vector2(def_x, def_y) * jump_force_horizontal;
+
+                }
+
+                else if (Input.GetKey(KeyCode.LeftArrow)) //Checks input if right. Automatic curved jump.
+                {
+                    isJumping = true;
+                    jump_TimeCounter = jump_Time;
+                    player_rigidbody2D.velocity = new Vector2(-def_x, def_y) * jump_force_horizontal;
+
+                }
+
+                else //Checks input if stationary. Automatic vertical jump.
+                {
+                    isJumping = true;
+                    jump_TimeCounter = jump_Time;
+                    player_rigidbody2D.velocity = Vector2.up * jump_force;
+                }
+
+            }
+
+            if (Input.GetKey(KeyCode.RightArrow) && isJumping == true)
+            {
+                if (jump_TimeCounter > 0)
+                {
+                    //player_rigidbody2D.velocity = Vector2.up * jump_force;
+                    jump_TimeCounter -= Time.deltaTime;
+                }
+
+                else
+                {
+                    isJumping = false;
+                }
+
+            }
+
+            if (Input.GetKeyUp(KeyCode.UpArrow))
             {
                 isJumping = false;
             }
 
         }
 
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            isJumping = false;
-        }
+
 
     }
 
     private void FixedUpdate()
     {
+
         if (move_horizontal > 0.1f && grounded_Script.isGrounded == true)
         {
             transform.position += Vector3.right * walk_speed * Time.deltaTime;

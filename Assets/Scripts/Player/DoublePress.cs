@@ -20,6 +20,7 @@ public class DoublePress : MonoBehaviour
     public bool doubePress_Down;
 
     GroundedScript grounded_Script;
+    MovementScript movement_Script;
 
     private void Start()
     {
@@ -32,84 +33,172 @@ public class DoublePress : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+
+        if (gameObject.name == "Player_1")
         {
-            float timeSinceLastPress = Time.time - lastPressedTimeL;
-
-            if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press DOWN!");
+            if (Input.GetKeyDown(KeyCode.S))
             {
+                float timeSinceLastPress = Time.time - lastPressedTimeL;
 
-            }
-            else //Debug.Log("Single Press DOWN!");
-            {
-
-            }
-
-            lastPressedTimeL = Time.time;
-
-        }
-
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            float timeSinceLastPress = Time.time - lastPressedTimeL;
-
-            if (timeSinceLastPress <= DOUBLE_PRESS_TIME)
-            {
-                if (grounded_Script.isGrounded == false)
+                if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press DOWN!");
                 {
-                    doubePress_Left_aerial = true;
+
+                }
+                else //Debug.Log("Single Press DOWN!");
+                {
+
                 }
 
-
-                else
-                {
-                    doubePress_Left = true;
-                }
-            }
-            else //Debug.Log("Single Press LEFT!");
-            {
+                lastPressedTimeL = Time.time;
 
             }
 
-            lastPressedTimeL = Time.time;
-        }
-
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            float timeSinceLastPress = Time.time - lastPressedTimeR;
-
-            if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press RIGHT!");  
+            if (Input.GetKeyDown(KeyCode.A))
             {
-                if (grounded_Script.isGrounded == false)
+                float timeSinceLastPress = Time.time - lastPressedTimeL;
+
+                if (timeSinceLastPress <= DOUBLE_PRESS_TIME)
                 {
-                    doubePress_Right_aerial = true;
+                    if (grounded_Script.isGrounded == false)
+                    {
+                        doubePress_Left_aerial = true;
+                    }
+
+
+                    else
+                    {
+                        doubePress_Left = true;
+                    }
                 }
-
-
-                else
+                else //Debug.Log("Single Press LEFT!");
                 {
-                    doubePress_Right = true;
+
                 }
 
-
+                lastPressedTimeL = Time.time;
             }
-            else //Debug.Log("Single Press RIGHT!");
+
+            if (Input.GetKeyDown(KeyCode.D))
             {
+                float timeSinceLastPress = Time.time - lastPressedTimeR;
+
+                if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press RIGHT!");  
+                {
+                    if (grounded_Script.isGrounded == false)
+                    {
+                        doubePress_Right_aerial = true;
+                    }
+
+
+                    else
+                    {
+                        doubePress_Right = true;
+                    }
+
+
+                }
+                else //Debug.Log("Single Press RIGHT!");
+                {
+
+                }
+
+                lastPressedTimeR = Time.time;
+            }
+
+            if (Input.GetKeyUp(KeyCode.D))
+            {
+                doubePress_Right = false;
+            }
+
+            if (Input.GetKeyUp(KeyCode.A))
+            {
+                doubePress_Left = false;
+            }
+        }
+
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                float timeSinceLastPress = Time.time - lastPressedTimeL;
+
+                if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press DOWN!");
+                {
+
+                }
+                else //Debug.Log("Single Press DOWN!");
+                {
+
+                }
+
+                lastPressedTimeL = Time.time;
 
             }
 
-            lastPressedTimeR = Time.time;
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                float timeSinceLastPress = Time.time - lastPressedTimeL;
+
+                if (timeSinceLastPress <= DOUBLE_PRESS_TIME)
+                {
+                    if (grounded_Script.isGrounded == false)
+                    {
+                        doubePress_Left_aerial = true;
+                    }
+
+
+                    else
+                    {
+                        doubePress_Left = true;
+                    }
+                }
+                else //Debug.Log("Single Press LEFT!");
+                {
+
+                }
+
+                lastPressedTimeL = Time.time;
+            }
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                float timeSinceLastPress = Time.time - lastPressedTimeR;
+
+                if (timeSinceLastPress <= DOUBLE_PRESS_TIME) //Debug.Log("Double Press RIGHT!");  
+                {
+                    if (grounded_Script.isGrounded == false)
+                    {
+                        doubePress_Right_aerial = true;
+                    }
+
+
+                    else
+                    {
+                        doubePress_Right = true;
+                    }
+
+
+                }
+                else //Debug.Log("Single Press RIGHT!");
+                {
+
+                }
+
+                lastPressedTimeR = Time.time;
+            }
+
+            if (Input.GetKeyUp(KeyCode.RightArrow))
+            {
+                doubePress_Right = false;
+            }
+
+            if (Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                doubePress_Left = false;
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            doubePress_Right = false;
-        }
 
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            doubePress_Left = false;
-        }
 
     }
 
